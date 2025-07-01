@@ -32,7 +32,7 @@ Creates a clean dataset of “healthy” turbine operations:
 
 #### `2_RunFS.ipynb`
 Runs **Feature Selection (FS)** on the healthy datasets:
-- Applies multiple FS techniques (e.g., correlation, mutual information).
+- Applies multiple FS techniques (correlation, mutual information, decision tree weights and estimated shapley valeus of an FFNN).
 - Evaluates features based on relevance and redundancy.
 - Outputs ranked feature lists for each turbine dataset.
 - Stores feature selection metadata for reuse in training.
@@ -41,8 +41,8 @@ Runs **Feature Selection (FS)** on the healthy datasets:
 Trains predictive models:
 - Loads previously selected features and clean datasets.
 - Sets up modeling configurations and hyperparameter search.
-- Trains multiple machine learning models (e.g., XGBoost, Random Forest).
-- Evaluates using metrics (e.g., MAE, RMSE).
+- Trains multiple machine learning models (LSTM, CNN, FFNN).
+- Evaluates using probabilistic and deterministic metrics
 - Saves best-performing model and logs training results.
 
 #### `4_plot_best_hp_set.ipynb`
