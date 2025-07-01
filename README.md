@@ -11,14 +11,14 @@ To apply these methods to a new dataset, you can:
 
 ### Notebooks
 
-#### `0_ScadaDATA_GeneralRawProcess.ipynb`
+#### `0_prep_Kelmarsh_or_Penmanshiel.ipynb`
 Prepares raw SCADA data for analysis:
 - Unzips and loads raw files.
 - Loops through turbines and applies initial cleaning.
 - Corrects timestamps and concatenates multi-year data.
 - Returns a dictionary per farm, with cleaned DataFrames for each turbine.
 
-#### `1_createHealthyDatasets_General.ipynb`
+#### `1_createHealthyDatasets.ipynb`
 Creates a clean dataset of “healthy” turbine operations:
 - Loads SCADA and Alarm data.
 - Keeps only mean-value features.
@@ -30,14 +30,14 @@ Creates a clean dataset of “healthy” turbine operations:
 - Splits datasets into consecutive Train / Validation / Test sets.
 - Saves results as per-turbine dictionaries of clean datasets.
 
-#### `2_RunFS_General.ipynb`
+#### `2_RunFS.ipynb`
 Runs **Feature Selection (FS)** on the healthy datasets:
 - Applies multiple FS techniques (e.g., correlation, mutual information).
 - Evaluates features based on relevance and redundancy.
 - Outputs ranked feature lists for each turbine dataset.
 - Stores feature selection metadata for reuse in training.
 
-#### `3_trainPred_General.ipynb`
+#### `3_train_prediction_models.ipynb`
 Trains predictive models:
 - Loads previously selected features and clean datasets.
 - Sets up modeling configurations and hyperparameter search.
