@@ -3,6 +3,9 @@
 These functions and scripts are designed to process, clean, and prepare wind turbine data—originally developed for datasets from the **Kelmarsh** and **Penmanshiel** Wind Farms.
 
 To apply these methods to a new dataset, you can:
+- Directly download the Kelmarsh and Penmanshiel Datasets from Zonodo and rund the scripts as is.
+  - KELMARSH:      https://zenodo.org/records/5841834
+  - PENMANSHIEL:   https://zenodo.org/records/8253010
 - Use the core utility functions inside the `Utils` folder.
 - Or adapt the provided notebooks by adjusting variable names, turbine identifiers, and dataset structure to match your new source.
 
