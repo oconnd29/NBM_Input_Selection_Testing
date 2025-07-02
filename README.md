@@ -16,40 +16,39 @@ Prepares raw SCADA data for analysis:
 - Unzips and loads raw files.
 - Loops through turbines and applies initial cleaning.
 - Corrects timestamps and concatenates multi-year data.
-- Returns a dictionary per farm, with cleaned DataFrames for each turbine.
+- Returns a dictionary per farm, with corrected DataFrames for each turbine.
 
 #### `1_createHealthyDatasets.ipynb`
-Creates a clean dataset of “healthy” turbine operations:
+Creates a clean datasets of “healthy” turbine operations:
 - Loads SCADA and Alarm data.
 - Keeps only mean-value features.
-- Defines consistent time windows.
+- Defines 6 month windows of data 
 - Filters out:
   - Critical failure periods.
   - Maintenance windows.
   - High-NaN targets or columns.
-- Splits datasets into consecutive Train / Validation / Test sets.
-- Saves results as per-turbine dictionaries of clean datasets.
+- Splits datasets into consecutive Train / Validation / Test sets - 4 months/2 months/1 month
+- Saves results as per-farm dictionaries of healthy datasets, the keys follow naming convention: 'TXX_DSXX'. 
 
 #### `2_RunFS.ipynb`
 Runs **Feature Selection (FS)** on the healthy datasets:
 - Applies multiple FS techniques (correlation, mutual information, decision tree weights and estimated shapley valeus of an FFNN).
-- Evaluates features based on relevance and redundancy.
 - Outputs ranked feature lists for each turbine dataset.
-- Stores feature selection metadata for reuse in training.
 
 #### `3_train_prediction_models.ipynb`
 Trains predictive models:
-- Loads previously selected features and clean datasets.
+- Loads previously ordered features and healthy datasets.
 - Sets up modeling configurations and hyperparameter search.
 - Trains multiple machine learning models (LSTM, CNN, FFNN).
-- Evaluates using probabilistic and deterministic metrics
-- Saves best-performing model and logs training results.
+- uses validation set to test each set of hyperparamas. the results for all are stored.
+- Saves the metrics on the valid set and the model state dict for each model.
 
 #### `4_plot_best_hp_set.ipynb`
 Visualizes model performance:
+- goes through validation results and finds the hp set that performed best
 - Loads the best hyperparameter configurations.
-- Plots predictions vs actuals for Test sets.
-- Provides diagnostic plots to compare model behavior across turbines.
+  Plots a heatmap of MSE (or any available metric) for chosen datasets across feature selection method
+- Plots predictions vs actuals for a single (farm, dataset, subsets, feature selector)
 
 ### Folder: `Utils/`
 
